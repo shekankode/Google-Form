@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Bootstrap Example</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <style>
+         .row-bordered:after {
+         content: "";
+         display: block;
+         border-bottom: 1px solid #ccc;
+         margin: 0 15px;
+         }
+      </style>
+      <script>
+         var ctr = 1;
+         var i=1;
+         function new_div()
+         {
+            i++;
+         	ctr++;
+         	var div1 = document.createElement('div');
+            div1.id = ctr;
+         	div1.innerHTML = document.getElementById('newDiv').innerHTML;
+         	document.getElementById('newlink').appendChild(div1);
+         }
+
+
+
+      </script>
+      <script language="javascript">
+      var i=1;
+         function add(type) {
+
+             var div2 = document.createElement('div');
+         	 var element = document.createElement("input");
+             var element2 = document.createElement("input");
+             var br = document.createElement("br");
+
+         	element.setAttribute("type", type);
+         	element.setAttribute("value", type);
+         	element.setAttribute("name", type);
+         	element2.setAttribute("name", "AnswerList");
+            div2.innerHTML=document.getElementById('a').innerHTML;
+
+         	//var b = document.getElementById(i);
+
+
+
+         	//Append the elements in page .
+         	div2.appendChild(element);
+            x=element.getAttribute("type");
+            if (x != "text" )
+            {
+             div2.appendChild(element2);
+             }
+             div2.appendChild(br);
+
+
+
+         }
+      </script>
+   </head>
+   <body>
+
+      <div id="newlink">
+         <div class="container">
+            <div class="row row-bordered">
+               <div class="col-xs-10 col-md-8" >
+                  <input type="text" placeholder="Enter question" name="QuestionList">
+                  <button class="btn btn-sm btn-primary add_more_button" onclick="new_div()"> +</button>
+               </div>
+               <div class="col-xs-2 col-md-4" >
+                     <form>
+                     <select name="element">
+                        <option value="checkbox">checkbox</option>
+                        <option value="text">Textbox</option>
+                        <option value="radio">Radio</option>
+                     </select>
+
+                     <input type="button" value="Add" onclick="add(document.forms[0].element.value)"/>
+                     </form>
+               </div>
+            </div>
+             <div id="a">
+                  <div class="row row-bordered">
+                      <div class="col-xs-12 col-md-12"  >
+                      <div></div>
+
+                  </div>
+                  </div>
+             </div>
+         </div>
+      </div>
+      <div id="newDiv" style="display:none">
+         <div class="container"  >
+            <div class="row row-bordered">
+               <div class="col-xs-10 col-md-8">
+                  <input type="text" placeholder="Enter question" name="QuestionList">
+                  <button class="btn btn-sm btn-primary add_more_button" onclick="new_div()"> +</button>
+               </div>
+               <div class="col-xs-2 col-md-4" >
+                    <form>
+                     <select name="element">
+                        <option value="checkbox">checkbox</option>
+                        <option value="text">Textbox</option>
+                        <option value="radio">Radio</option>
+                     </select>
+
+                     <input type="button" value="Add" onclick="add(document.forms[0].element.value)"/>
+                  </form>
+               </div>
+            </div>
+             <div id="a">
+                  <div class="row row-bordered">
+                      <div class="col-xs-12 col-md-12"  >
+                      <div></div>
+
+                  </div>
+                  </div>
+             </div>
+
+         </div>
+      </div>
+   </body>
+</html>

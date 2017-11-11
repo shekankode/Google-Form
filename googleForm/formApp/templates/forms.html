@@ -1,0 +1,131 @@
+<html>
+<head>
+    <script>
+        var x=1;
+        function appendRow()
+        {
+           var d = document.getElementById('qaFormContainer');
+           var e= document.createElement('div');
+
+           ++x;
+            e.id='qaSet' +x ;
+            console.log(e.id);
+           e.innerHTML="<div id='ques"+x+"'><input type='text' name='questions' ><br > <div id='ansSelect" + x +"' ><select id='ansType"+x+"'><option value='radio'>RadioButton</option><option value='checkbox'>CheckBox</option><option value='text'>TextField</option></select></div><div id='ansSet"+x+"'><input type='button' id='addAns"+x+"'value='add' onclick='addans(this.id)'><div id='choice"+x+"'></div></div></div>";
+
+            var deleteqaSet= document.createElement('div');
+            deleteqaSet.innerHTML='<input type="button" value="-" onclick="removeqaSet('+e.id+')"> '
+            e.appendChild(deleteqaSet);
+
+           d.appendChild(e);
+
+        }
+		var ansCount=1;
+        function addans(idp)
+        {
+
+            //var parent = child.parentElement;
+            var pid=document.getElementById(idp).parentElement.id;
+            // parent div's id // pid=ans1
+            //var parentDiv=document.getElementById(pid);
+			// to extract the number from parent id -- to use the same number in child
+            var theNumInId = pid.toString().match(/\d+/)[0];
+            //console.log(thenum);
+            var e = document.getElementById('ansType'+theNumInId).value;
+           // console.log(e);
+
+			var choiceSet=document.getElementById('choice'+theNumInId);
+
+           var ansText = document.createElement('input');
+            ansText.setAttribute("type","text");
+            ansText.setAttribute("name","answerTypes");
+            // need to fix this
+            var newInput=document.createElement('input');
+            newInput.setAttribute("type",e);
+
+            var newAns=document.createElement('div');
+            newAns.id='option'+ansCount;
+            //console.log(newAns.id);
+            var removePID=newAns.id; //remove button's parent ID
+            //console.log(removePID);
+
+            if(e!="text"){
+             newAns.appendChild(newInput);
+            }
+            newAns.appendChild(ansText);
+
+
+            //adding the delete button
+           var delLink =document.createElement('div');
+            //var delLink = '<div><a href="javascript:delIt()">Del</a></div>';
+            delLink.id='del"+ansCount+"';
+            delLink.innerHTML="<a href='javascript:removeAns("+removePID+")'>remove</a>";
+            newAns.appendChild(delLink);
+           choiceSet.appendChild(newAns);
+		ansCount++;
+
+        }
+        function removeAns(rpid){
+           // console.log(rpid.id);  using .id because rpid prints the whole div.. ( don't know why)
+        	var rppid=document.getElementById(rpid.id).parentElement.id;
+        	//console.log(rppid);
+        	var parentDiv=document.getElementById(rppid);
+            parentDiv.removeChild(document.getElementById(rpid.id));
+        }
+        function removeqaSet(qid){
+
+         console.log(qid.id);
+         var qasetPid= document.getElementById(qid.id).parentElement.id;
+         console.log(qasetPid);
+         var parentDiv=document.getElementById(qasetPid);
+         parentDiv.removeChild(document.getElementById(qid.id));
+        }
+        function later()
+        {
+
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <form action="/preview/" method="post">
+        <div style="float;right" id="addQ">
+                <input type="button" value="+" onclick="appendRow()">
+
+        </div>
+
+
+        <div id="qaFormContainer">
+
+            <div id="qaSet1">
+            <div id="ques1">
+                <input type="text" name="questions" >
+
+                <div id="ansSelect1">
+
+                    <select id="ansType1" onchange="later()">
+                        <option value="radio">Radio Button</option>
+                        <option value="checkbox">CheckBox</option>
+                        <option value="text">TextField</option>
+                    </select>
+
+
+                </div>
+                <div id="ansSet1">
+                    <input type="button" value="add" id="addAns1" onclick="addans(this.id)">
+                    <div id='choice1'></div>
+                </div>
+
+                <!--<div><input type="button" value="-" onclick="removeqaSet('qaset1')"></div>-->
+            </div>
+            </div>
+        </div>
+<input type="submit" value="SAVE">
+    </form>
+
+
+
+</body>
+
+</html>

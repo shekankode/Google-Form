@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    {%for i in QA%}
+       {{i.ques1}}
+       {% for j in QA %}
+      <input type="{{j.fieldType1}}" >
+      {{j.ans1}}
+       <br>
+       {% endfor %}
+       <br>
+    {%endfor%}
+
+</div>
+
+</body>
+</html>

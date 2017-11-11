@@ -1,0 +1,60 @@
+<html>
+<head>
+
+<script language="javascript">
+function add(type) {
+
+
+	var element = document.createElement("input");
+    var element2 = document.createElement("input");
+    var br = document.createElement("br");
+	element.setAttribute("type", type);
+	element.setAttribute("value", type);
+	element.setAttribute("name", type);
+	element2.setAttribute("name", "AnswerList");
+
+
+	var b = document.getElementById("a");
+
+
+	//Append the elements in page .
+	b.appendChild(element);
+
+    x=element.getAttribute("type");
+   if (x != "text" )
+   {
+    b.appendChild(element2);
+
+    }
+    b.appendChild(br);
+
+
+}
+</script>
+
+</head>
+<body>
+<form action="/addAns/" method="post">
+    {% csrf_token %}
+<select name="element">
+	<option value="checkbox">checkbox</option>
+	<option value="text">Textbox</option>
+	<option value="radio">Radio</option>
+</select>
+<input type="button" value="Add" onclick="add(document.forms[0].element.value)"/>
+
+<div id="a"><br></div>
+
+    <input type="submit" value="submit" >
+
+</form>
+<div>
+
+    {% for i in A1 %}
+      <input type="{{i.fieldType}}" >
+      {{i.ans}}
+    <br>
+    {% endfor %}
+</div>
+</body>
+</html>
